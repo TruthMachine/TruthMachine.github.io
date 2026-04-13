@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="ElectrumSVP v0.1.0 release"/>
+    <meta name="author" content="TruthMachine"/>
+    <meta property="og:site_name" content="ElectrumSVP"/>
+    <meta property="og:title" content="Introducing ElectrumSVP v0.1.0"/>
+    <meta property="og:description" content="Official release announcement for ElectrumSVP v0.1.0"/>
+    <title>ElectrumSVP - Introducing v0.1.0</title>
+
+    <link rel="stylesheet" href="../../theme/css/fontawesome-v5.6.3.min.css">
+    <link rel="stylesheet" href="../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../theme/css/local.css?8">
+    <link rel="icon" href="../../theme/img/favicon.ico">
+
+    <!-- FIX: restore paragraph spacing -->
+    <style>
+      .entry-content p {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body class="d-flex flex-column h-100">
+    <main role="main" class="flex-shrink-0 mb-3">
+
+      <div class="bg-dark">
+        <div class="container">
+          <nav class="navbar navbar-dark navbar-expand-lg">
+            <a class="navbar-brand" href="../../index.html">
+              <img height="40px" src="../../theme/img/ESV_logo_wh_RGB_full.svg"/>
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="container content-container pt-2">
+        <div class="row justify-content-center esv-article">
+          <div class="col-lg-8 mt-3">
+
+            <section id="content" class="body">
+              <header>
+
+                <h2 class="entry-title">
+                  <a href="#" rel="bookmark">
+                    Introducing ElectrumSVP v0.1.0
+                  </a>
+                </h2>
+               
+                <div class="post-time">
+                  <time class="published">
+                    2026/04/11
+                  </time>
+                </div>
+
+                <address class="vcard author">
+                  By TruthMachine
+                </address>
+              </header>
+
+              <div class="entry-content pt-3">
+
+<p>
+I’m happy to announce the official release of ElectrumSVP v0.1.0.
+</p>
+
+<p>
+ElectrumSVP is a continuation of the ElectrumSV project — an updated and maintained fork with new features and improved security for users. With this release, ElectrumSVP has evolved from an experimental beta into a more stable and refined wallet focused on <b>control, transparency, privacy, and safety</b>.
+</p>
+
+
+<p>
+The 0.1.0 release represents the first official version, introducing significant improvements to transaction handling, fee logic, and UTXO management, along with new tools designed for advanced users.
+</p>
+
+<div class="alert alert-primary mt-3" role="alert">
+  <b>Download ElectrumSVP v0.1.0:</b><br/>
+  <a href="https://github.com/TruthMachine/ElectrumSVP/releases/tag/v0.1.0" target="_blank">
+    https://github.com/TruthMachine/ElectrumSVP/releases/tag/v0.1.0
+  </a>
+</div>
+
+<div class="section">
+<h2>What has changed in this release?</h2>
+
+<h3>AppImage Compatibility</h3>
+<p>
+ElectrumSVP is the first version of ElectrumSV to include full AppImage support for Linux distributions.
+</p>
+<p>
+It is designed to be fully self-contained, bundling all required dependencies so it can run across a wide range of systems without installation. This makes it especially useful for privacy-focused environments such as TAILS, where it can run over Tor.
+</p>
+<p>
+Tor detection and support have been improved, and this AppImage build no longer requires <code>libfuse2</code>, improving compatibility with modern systems.
+</p>
+
+<h3>macOS DMG Build</h3>
+<p>
+A macOS DMG build is now available. Because this release is not signed with an Apple developer certificate, macOS may block the application on first launch.
+</p>
+<p>
+To open the application, users should right-click and select <b>Open</b>.
+</p>
+<p>
+On Apple Silicon systems, Rosetta is currently required.
+</p>
+
+<h3>Upgraded Dependencies and Headers</h3>
+<p>
+Major dependencies have been upgraded, including moving from BitcoinX 0.2.4 to 0.9.0. This introduces security improvements and expanded functionality, but required significant refactoring of the codebase.
+</p>
+<p>
+Due to new metadata requirements, the block headers format has changed and is no longer compatible with previous ElectrumSV versions. On first launch, ElectrumSVP will detect outdated or missing headers and replace them with a preloaded headers file bundled with the wallet. Existing ElectrumSV wallets from previous versions will also be detected and can be opened as normal in ElectrumSVP.
+</p>
+
+<p>
+The preloaded headers are synced to a recent block height, allowing for fast startup and quick network connection.
+</p>
+
+<h3>BREAD Verification</h3>
+<p>
+The previous BEEF verification implementation has been replaced with <b>BREAD (Blockchain Referenced Evidence and Data)</b>.
+</p>
+<p>
+BREAD is a simplified subset of BEEF, focused on verifying funds rather than full transaction ancestry. This results in more consistent behavior, simpler validation logic, and a cleaner foundation for future improvements.
+</p>
+
+<h3>Sweep Private Key</h3>
+<p>
+A streamlined sweep function allows users to import funds from private keys and automatically create and broadcast transactions.
+</p>
+<ul>
+<li>Supports compressed and uncompressed keys</li>
+<li>BIP38 encrypted keys supported</li>
+<li>BREAD/BEEF JSON UTXO import</li>
+<li>Optional custom fee (sats/kB)</li>
+<li>Built-in guard rails to prevent excessive fees</li>
+</ul>
+
+<h3>Fee System Overhaul</h3>
+<p>
+Fees are now standardized to <b>satoshis per kilobyte (sats/kB)</b>, providing predictable and transparent behavior.
+</p>
+<p>
+Several bugs related to incorrect fee calculation have been fixed, and custom fees can be configured in preferences. Additional safeguards include warnings for low-fee transactions (below ~100 sats/kB) and a minimum fallback fee of 1 sat to prevent zero-fee transactions.
+</p>
+
+<h3>UTXO Splitting & Pay-to-Many</h3>
+<p>
+Advanced coin management tools allow users to split coins into multiple outputs using the pay-to-many workflow.
+</p>
+<ul>
+<li>Fixed amount splitting</li>
+<li>Randomized splitting for improved privacy</li>
+<li>Enhanced batching workflow</li>
+<li>Multiple unit support (sats, bits, millibits, Bitcoin)</li>
+<li>Coinsplit tab hidden but still accessible</li>
+</ul>
+<p>
+Current limits include approximately 500 UTXOs per transaction and a ~300 sat minimum per output. Large output counts may slow down BREAD verification.
+</p>
+
+<h3>BIP39 Default</h3>
+<p>
+Wallet creation now uses <b>BIP39 seeds by default</b>.
+</p>
+<p>
+Derivation paths are displayed alongside destinations and are available in secured data views for recovery. Legacy Electrum seeds are still supported.
+</p>
+
+<h3>Coin Control Improvements</h3>
+<p>
+Users now have improved control over their coins with expanded UTXO management tools.
+</p>
+<ul>
+<li>Freeze/unfreeze addresses (Destinations tab)</li>
+<li>Freeze/unfreeze individual UTXOs (Coins tab)</li>
+<li>"Send from" functionality for precise spending</li>
+</ul>
+
+<h3>Hardware Wallets Removed</h3>
+<p>
+Hardware wallet support has been deprecated and removed to reduce complexity and avoid reliance on fragile external dependencies.
+</p>
+<p>
+Users seeking similar security are encouraged to use multisig accounts across multiple devices.
+</p>
+
+<h3>User Interface Improvements</h3>
+<ul>
+<li>Destinations tab redesigned with address and derivation path visibility</li>
+<li>Improved script display and copying for multisig</li>
+<li>New units available in preferences, including sats, bits, millibits, Bitcoin, BSV Blockchain tokens</li>
+<li>General UI cleanup and consistency improvements</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Known Issues</h2>
+<ul>
+<li><b>Windows QR scanning:</b> Camera may lock after a single scan and require restarting the application.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Looking Forward</h2>
+<p>
+This release marks the beginning of ongoing development. Future updates will continue to refine usability while maintaining a strong focus on <b>privacy, reliability, and user control</b>.
+</p>
+</div>
+
+              </div>
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="footer site-footer bg-dark py-2 mt-auto">
+      <div class="container">
+        <p class="text-center text-white-50 mt-4 mb-2">
+          ElectrumSVP Project
+        </p>
+      </div>
+    </footer>
+
+    <script src="../../theme/js/jquery-3.3.1.min.js"></script>
+    <script src="../../theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+
