@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="ElectrumSVP v0.2.0-beta.1 release"/>
+    <meta name="author" content="TruthMachine"/>
+    <meta property="og:site_name" content="ElectrumSVP"/>
+    <meta property="og:title" content="ElectrumSVP v0.2.0-beta.1"/>
+    <meta property="og:description" content="Beta release announcement for ElectrumSVP v0.2.0-beta.1"/>
+    <title>ElectrumSVP - v0.2.0-beta.1</title>
+
+    <link rel="stylesheet" href="../../theme/css/fontawesome-v5.6.3.min.css">
+    <link rel="stylesheet" href="../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../theme/css/local.css?8">
+    <link rel="icon" href="../../theme/img/favicon.ico">
+
+    <style>
+      .entry-content p {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body class="d-flex flex-column h-100">
+    <main role="main" class="flex-shrink-0 mb-3">
+
+      <div class="bg-dark">
+        <div class="container">
+          <nav class="navbar navbar-dark navbar-expand-lg">
+            <a class="navbar-brand" href="../../index.html">
+              <img height="40px" src="../../theme/img/ESV_logo_wh_RGB_full.svg"/>
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="container content-container pt-2">
+        <div class="row justify-content-center esv-article">
+          <div class="col-lg-8 mt-3">
+
+            <section id="content" class="body">
+              <header>
+
+                <h2 class="entry-title">
+                  <a href="#" rel="bookmark">
+                    ElectrumSVP v0.2.0-beta.1
+                  </a>
+                </h2>
+
+                <div class="post-time">
+                  <time class="published">
+                    2026/09/14
+                  </time>
+                </div>
+
+                <address class="vcard author">
+                  By TruthMachine
+                </address>
+              </header>
+
+              <div class="entry-content pt-3">
+
+<p>
+I’m happy to announce the beta release of <b>ElectrumSVP v0.2.0-beta.1</b>.
+</p>
+
+<p>
+This release continues development of ElectrumSVP with a focus on <b>security, verification, transaction control, reliability, and usability</b>.
+</p>
+
+<div class="alert alert-warning mt-3" role="alert">
+  <b>This is a beta release.</b><br/>
+  ElectrumSVP v0.2.0-beta.1 is intended for testing and feedback before the next official release. Users are encouraged to test the wallet carefully and report any problems or unexpected behavior.
+</div>
+
+<div class="alert alert-primary mt-3" role="alert">
+  <b>Download ElectrumSVP v0.2.0-beta.1:</b><br/>
+  <a href="https://github.com/TruthMachine/ElectrumSVP/releases/tag/v0.2.0-beta.1" target="_blank">
+    https://github.com/TruthMachine/ElectrumSVP/releases/tag/v0.2.0-beta.1
+  </a>
+</div>
+
+<div class="section">
+<h2>What has changed in this release?</h2>
+
+<h3>Improved Header Security & Reliability</h3>
+<p>
+Header handling and integrity checking have been improved to provide greater protection against corrupted or inconsistent blockchain headers.
+</p>
+<p>
+Before wallet launch, ElectrumSVP now performs additional header integrity checks to help detect problems involving orphan blocks and chain reorganizations.
+</p>
+<p>
+A bug that could cause the headers file to become corrupted during synchronization after 2016 blocks has also been fixed.
+</p>
+<p>
+A new <b>Refresh Headers</b> option is available in the graphical interface, making it easier to recover and refresh local header data when necessary.
+</p>
+
+<h3>BREAD Verification Improvements</h3>
+<p>
+BREAD (Blockchain Referenced Evidence and Data) verification has been significantly improved in this release.
+</p>
+<p>
+Merkle proof data can now be obtained directly from the wallet's local SQLite database rather than repeatedly querying Electrum servers. This reduces unnecessary network requests and substantially improves verification performance.
+</p>
+<p>
+BREAD verification is now also performed for unconfirmed transactions. When possible, an unconfirmed transaction is anchored to the most recent confirmed transaction with available proof data, and the number of hops to that anchor is reported.
+</p>
+<p>
+Users can also export BREAD JSON proof data for further inspection or use with other tools.
+</p>
+
+<h3>Transaction Fee Overhaul</h3>
+<p>
+The transaction fee system has been substantially overhauled to provide users with greater control and transparency over transaction fees.
+</p>
+<p>
+Fee handling, fee display, and transaction construction have been improved, with additional safeguards intended to make unexpected or excessive fees easier to identify.
+</p>
+<p>
+The interface now provides clearer information about the fee being used when creating transactions.
+</p>
+
+<h3>Improved USD Conversion</h3>
+<p>
+USD conversion and fiat amount handling have been improved throughout the transaction interface.
+</p>
+<p>
+Additional exchange-rate providers have been added, including <b>Banana Blocks</b> and <b>Whatsonchain</b>, providing more options for obtaining current BSV exchange-rate information.
+</p>
+
+<h3>UTXO & Coin Control Improvements</h3>
+<p>
+The UTXO splitting and coin-control functionality has been substantially overhauled.
+</p>
+<ul>
+<li>Improved coin splitting workflow</li>
+<li>Greater control over selected UTXOs</li>
+<li>Improved fee control when splitting coins</li>
+<li>Better integration with transaction construction</li>
+</ul>
+<p>
+These changes provide users with more direct control over how their coins are selected and spent.
+</p>
+
+<h3>Account & Key Management</h3>
+<p>
+Wallet account handling has been improved, including support for multiple accounts by default.
+</p>
+<p>
+New protections prevent duplicate private keys from being imported into the same account when those keys are already present.
+</p>
+<p>
+A bug affecting imported private-key accounts that could cause the account to fail to display correctly has also been fixed.
+</p>
+<p>
+Derivation path display has been corrected for wallets using custom derivation paths.
+</p>
+
+<h3>Address Freezing</h3>
+<p>
+Freezing addresses from the <b>Destinations</b> tab has been improved.
+</p>
+<p>
+Frozen and unfrozen rows now provide clearer visual feedback, including orange or grey highlighting depending on the selected theme.
+</p>
+
+<h3>Themes</h3>
+<p>
+ElectrumSVP now provides additional interface themes through Preferences.
+</p>
+<ul>
+<li>Light</li>
+<li>Dark</li>
+<li>Pink</li>
+<li>Orange</li>
+</ul>
+<p>
+Theme-related interface elements have also been improved for better visibility and consistency.
+</p>
+
+<h3>Windows QR Scanning</h3>
+<p>
+A bug affecting QR-code scanning on Windows has been fixed. The camera should no longer become locked after a single scan and require restarting the application.
+</p>
+
+<h3>Sweep Signing Security</h3>
+<p>
+A nonce handling issue affecting sweep transaction signing has been fixed, improving the security and reliability of the signing process.
+</p>
+
+<h3>Platform & Compatibility Improvements</h3>
+<p>
+Several compatibility issues that could cause ElectrumSVP to crash in Python 3.10 environments have been fixed.
+</p>
+<p>
+The Linux application build has also been improved to address a segmentation fault affecting recent Linux environments, including Ubuntu 26.04 and Arch-based systems.
+</p>
+<p>
+Additional macOS wallet data-path issues have been corrected to improve compatibility and reliability on macOS.
+</p>
+
+<h3>Updated Servers & Block Explorers</h3>
+<p>
+Default server selections and block explorer information have been updated to reflect currently available services.
+</p>
+
+<h3>User Interface Improvements</h3>
+<p>
+A number of smaller interface improvements have been made throughout the wallet, including improved sizing, spacing, status indicators, transaction information, and general consistency.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Beta Testing</h2>
+<p>
+This release is intended to receive additional testing across different operating systems, hardware configurations, wallet types, and transaction scenarios.
+</p>
+<p>
+Particular attention should be given to wallet restoration, transaction verification, BREAD proof handling, fee calculation, coin control, header synchronization, QR scanning, and application stability.
+</p>
+<p>
+If you encounter a problem, please report it with as much information as possible, including the operating system, ElectrumSVP version, relevant logs or error messages, and steps needed to reproduce the issue.
+</p>
+</div>
+
+<div class="section">
+<h2>Looking Forward</h2>
+<p>
+ElectrumSVP v0.2.0-beta.1 is another step toward the next stable release. Continued testing and feedback will help identify remaining issues and ensure that the next release is reliable across a wider range of environments.
+</p>
+<p>
+Development will continue with a focus on <b>security, privacy, reliability, transparency, and user control</b>.
+</p>
+</div>
+
+              </div>
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="footer site-footer bg-dark py-2 mt-auto">
+      <div class="container">
+        <p class="text-center text-white-50 mt-4 mb-2">
+          ElectrumSVP Project
+        </p>
+      </div>
+    </footer>
+
+    <script src="../../theme/js/jquery-3.3.1.min.js"></script>
+    <script src="../../theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
