@@ -368,23 +368,21 @@ p {
    Wallet Screenshot Carousel
    ========================================================================== */
 
-.esv-wallet-carousel {
-    margin-top: 24px;
-    margin-bottom: 24px;
-    background-color: var(--esvp-surface);
-    border: 1px solid var(--esvp-border);
-    border-radius: var(--esvp-radius);
-    overflow: hidden;
+.esv-wallet-carousel .carousel-inner {
+    background-color: var(--esvp-bg);
 }
 
 .esv-wallet-carousel .carousel-item img {
     width: 100%;
-    height: auto;
+    height: 450px;
+    object-fit: contain;
+    object-position: center top;
     display: block;
+    background-color: var(--esvp-bg);
 }
 
 .esv-carousel-caption {
-    padding: 1rem 1.25rem 0.75rem;
+    padding: 0.5rem 1.25rem 0.75rem;
     background-color: var(--esvp-surface);
     text-align: center;
 }
@@ -442,9 +440,6 @@ p {
         bottom: 60px;
     }
 }
-
-
-
 
 /* ==========================================================================
    Cards
@@ -788,4 +783,9 @@ i.fa-external-link-alt {
     font-weight: 700;
     src: url(../webfonts/Roboto-Slab-Bold.woff2?9984f4a9bda09be08e83f2506954adbe) format("woff2");
     font-display: block;
+}
+
+.btn-download-small {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.9rem;
 }
